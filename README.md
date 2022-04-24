@@ -1,6 +1,6 @@
 # project-management-tool :sparkles:
 
-![logo](img/osgi-logo.jpg "logo")
+![logo](img/logo.jpg "logo")
 
 ## Table of Contents
 
@@ -20,9 +20,8 @@
 
 ## System Overview :package:
 
-- [x] 
-- [x] 
-- [x] 
+ [x] 
+ [x] 
 
 ## Authors :mortar_board:
 - [Dissanayake M.C.Y.D  -  IT20013332](https://github.com/Chabbax)
