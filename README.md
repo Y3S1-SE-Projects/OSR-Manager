@@ -1,4 +1,4 @@
-# project-management-tool :sparkles:
+# Project-Management-Tool : Research :sparkles:
 
 ![logo](img/logo.jpg "logo")
 
