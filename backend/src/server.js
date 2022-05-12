@@ -14,7 +14,7 @@ app.use(cors());
 
 app.listen(PORT, ()=>{
     logger.info(`Server is up and running on port number: ${PORT}`)
-    DB_connect().then(r => {
+    DB_connect().then(() => {
         logger.warn("MongoDB Connecting...")
     });
 })
