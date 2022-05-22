@@ -45,11 +45,9 @@ const getUsernames = (req,res)=> {
     logger.info(`<-- ${req.method} Request`);
     const names = req.params.name;
 
-    Student.findOne({name:names}).then((stdcount)=>{
+    Student.findOne({name:names}).then((student)=>{
         logger.info(`--> ${req.method} Response`);
-        res.json({
-            count:stdcount
-        });
+        res.json(student);
     }).catch((error)=>{
         logger.error(`${error.message}`)
     })
