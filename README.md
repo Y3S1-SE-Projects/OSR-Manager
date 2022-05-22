@@ -1,6 +1,6 @@
 # Project-Management-Tool : Research :sparkles:
 
-![logo](images/logo.jpg "logo")
+![logo](images/architecture.png "logo")
 
 ## Use Case Scenario :palm_tree:
 
