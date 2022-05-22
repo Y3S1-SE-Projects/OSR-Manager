@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const configs = require("../config/index");
+const configs = require("./index");
 const logger = require("../utils/logger");
 
-const DBconnect = async () => {
+const DB_connect = async () => {
 
     const URL = configs.DB_CONNECTION;
 
@@ -14,4 +14,4 @@ const DBconnect = async () => {
 
  }
 
-module.exports = DBconnect;
+module.exports = DB_connect;
