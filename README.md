@@ -33,5 +33,5 @@ Research project and automating certain tasks.
 ## Authors :mortar_board:
 - [Dissanayake M.C.Y.D  -  IT20013332](https://github.com/Chabbax)
 - [Abineshh U  -  IT20025908](https://github.com/)
-- [Zihara M.I.F  -  IT20032388](https://github.com/)
+- [Zihara M.I.F  -  IT20032388](https://github.com/Zihara)
 - [Kuruppu S.G  -  IT20061302](https://github.com/)
