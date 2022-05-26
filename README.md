@@ -21,7 +21,7 @@ Research project and automating certain tasks.
 
 ## Getting Started - Installation :computer: :stuck_out_tongue:
 
-1.
+1.npm i
 2.
 
 
