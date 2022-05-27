@@ -12,10 +12,12 @@ Do these steps in the directory of both client and server folders
 
 ```
 ### .env configuration
+
   1. Create a .env file
   2. INCOMPLETEEE
 
 ### Starting application
+
   1. npm i
   2. npm start 
 
@@ -25,6 +27,12 @@ Do these steps in the directory of both client and server folders
   2. yarn start 
 
 ```
+### Sample MongoDB data
+
+```
+< Sample MongoDB data >
+```
+
 
 ## System Overview :package:
 
