@@ -23,7 +23,11 @@ OR
 
 ## System Overview :package:
 
+### Class Diagram
 ![classdiagram](images/classdiagram.png "classdiagram")
+
+### Technology Stack
+![technology](images/technology.png "technology")
 
 ## Authors :mortar_board:
 - [Dissanayake M.C.Y.D  -  IT20013332](https://github.com/Chabbax)
