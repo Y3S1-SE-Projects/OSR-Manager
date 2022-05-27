@@ -13,18 +13,22 @@ Do these steps in the directory of both client and server folders
 ```
 ### .env configuration
 
-  1. Create a .env file
-  2. INCOMPLETEEE
+- Create a .env file
+- INCOMPLETEEE
 
 ### Starting application
 
-  1. npm i
-  2. npm start 
-
+- npm i
+- npm start 
   OR
+- yarn
+- yarn start 
 
-  1. yarn
-  2. yarn start 
+### Testing application
+
+- yarn test
+  OR
+- npm run test
 
 ```
 ### Sample MongoDB data
