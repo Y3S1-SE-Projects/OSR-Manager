@@ -11,22 +11,29 @@ All SLIIT undergraduates must do a research project in their 4th year. This Rese
 Do these steps in the directory of both client and server folders
 
 ```
-1. npm i
-2. npm start 
+### .env configuration
+  1. Create a .env file
+  2. INCOMPLETEEE
 
-OR
+### Starting application
+  1. npm i
+  2. npm start 
 
-1. yarn
-2. yarn start 
+  OR
+
+  1. yarn
+  2. yarn start 
 
 ```
 
 ## System Overview :package:
 
 ### Class Diagram
+Below is the class diagram for this project in which it clearly displays the functions and features of each stakeholder of this project
 ![classdiagram](images/classdiagram.png "classdiagram")
 
 ### Technology Stack
+Below are the types of technologies we have used in this project
 ![technology](images/technology.png "technology")
 
 ## Authors :mortar_board:
