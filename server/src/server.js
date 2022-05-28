@@ -28,7 +28,10 @@ app.listen(PORT, ()=>{
 
 //feature/abineshh
 app.use("/student",require("./api/routes/Student.route"))
-
+app.use("/auth", require("./api/routes/Authentication.route"));
+app.use("/users", require("./api/routes/User.route"));
+app.use("/posts", require("./api/routes/Post.route"));
+app.use("/categories", require("./api/routes/Categories.route"));
 
 
 //feature/zihara
