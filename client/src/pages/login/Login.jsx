@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./login.css";
@@ -8,6 +8,11 @@ export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
+
+  // For Testing
+  const [error, setError] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +37,8 @@ export default function Login() {
           type="text"
           className="loginInput"
           placeholder="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           ref={userRef}
         />
         <label>Password</label>
@@ -39,11 +46,23 @@ export default function Login() {
           type="password"
           className="loginInput"
           placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           ref={passwordRef}
         />
-        <button className="loginButton" type="submit" disabled={isFetching}>
+        <button
+          className="loginButton"
+          type="submit"
+          disabled={isFetching || !username || !password}
+        >
           Login
         </button>
+        <span
+          data-testid="error"
+          style={{ visibility: error ? "visible" : "hidden" }}
+        >
+          Something went wrong!
+        </span>
       </form>
       {/* <button className="loginRegisterButton">
         <Link className="link" to="/register">
