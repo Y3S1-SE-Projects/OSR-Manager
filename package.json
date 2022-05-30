@@ -4,13 +4,8 @@
   "description": "PMT backend",
   "main": "src/server.js",
   "scripts": {
-    "build": "cd client && yarn run build",
-    "install-client": "cd client && yarn install",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --runInBand --forceExit",
-    "heroku-postbuild": "yarn run install-client && yarn run build",
-    "server": "nodemon server.js",
-    "develop": "concurrently --kill-others-on-fail \"yarn run server\" \"yarn run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"yarn run server\" \"yarn run start --prefix client\""
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
