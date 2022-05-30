@@ -16,13 +16,6 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.listen(process.env.PORT || 4000, () => {
-  logger.info(`Server is up and running on port number: ${PORT}`);
-  DB_connect().then(() => {
-    logger.warn("MongoDB Connecting...");
-  });
-});
-
 //routes
 app.use("/student", require("./src/api/routes/Student.route"));
 app.use("/auth", require("./src/api/routes/Authentication.route"));
@@ -36,4 +29,11 @@ app.use(express.static(path.join(__dirname, "/client/build")));
 // When app gets any requests its going to redirect those to our client
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
+
+app.listen(process.env.PORT || 4000, () => {
+  logger.info(`Server is up and running on port number: ${PORT}`);
+  DB_connect().then(() => {
+    logger.warn("MongoDB Connecting...");
+  });
 });
