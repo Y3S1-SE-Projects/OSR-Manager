@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
-const logger = require("./src/utils/logger");
-const config = require("./src/config/index");
-const DB_connect = require("./src/config/database.connection");
+// const logger = require("./src/utils/logger");
+// const config = require("./src/config/index");
+// const DB_connect = require("./src/config/database.connection");
 
 const app = express();
 // const PORT = config.SOCKET_PORT || 4000;
