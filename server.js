@@ -32,13 +32,19 @@ app.get("*", function (request, response) {
   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
+mongoose
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB has been connected"))
+  .catch((err) => console.log(err));
+
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
-  DB_connect().then(() => {
-    logger.warn("MongoDB Connecting...");
-  });
 });
+
 // app.listen(process.env.PORT || 4000, () => {
 //   logger.info(`Server is up and running on port number: ${PORT}`);
 //   DB_connect().then(() => {
