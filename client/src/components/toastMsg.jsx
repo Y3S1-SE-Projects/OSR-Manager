@@ -13,7 +13,7 @@ const toastMsg = () => {
 
     return (
         <div>
-            <h1>Hello world</h1>
+            <h1>Notifications</h1>
             <button onClick={notify}> Click Me!</button>
         </div>
     );

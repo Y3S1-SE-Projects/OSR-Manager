@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
+import Notification from "../../utils/Notification"
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,7 @@ export default function Register() {
         email,
         password,
       });
-      res.data && window.location.replace("/login");
+      res.data && window.location.replace("/login") && Notification('success','User registered');
     } catch (err) {
       setError(true);
     }
