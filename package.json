@@ -8,6 +8,9 @@
     "start": "node server.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
+  "engines": {
+    "node": "8.9.2"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
