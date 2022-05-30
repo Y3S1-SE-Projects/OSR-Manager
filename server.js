@@ -15,6 +15,14 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+mongoose
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB has been connected"))
+  .catch((err) => console.log(err));
+
 //routes
 app.use("/student", require("./src/api/routes/Student.route"));
 app.use("/auth", require("./src/api/routes/Authentication.route"));
@@ -26,23 +34,14 @@ app.use("/categories", require("./src/api/routes/Categories.route"));
 const path = require("path");
 
 // middleware will import the client build folder to the server.
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 // will ensure that the routes defined with React Router are working once the application has been deployed. It handles any requests by redirecting them to index.html
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  response.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
-mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB has been connected"))
-  .catch((err) => console.log(err));
-
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log(`Server started on port ${port}`);
 });
 
