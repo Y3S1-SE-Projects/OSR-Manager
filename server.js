@@ -38,7 +38,7 @@ app.use(express.static(path.resolve(__dirname, "client", "build")));
 
 // will ensure that the routes defined with React Router are working once the application has been deployed. It handles any requests by redirecting them to index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.listen(process.env.PORT || 4000, () => {
