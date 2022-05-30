@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const path = require("path");
-
 require("dotenv").config();
 
 const logger = require("./src/utils/logger");
@@ -23,12 +21,16 @@ app.use("/users", require("./src/api/routes/User.route"));
 app.use("/posts", require("./src/api/routes/Post.route"));
 app.use("/categories", require("./src/api/routes/Categories.route"));
 
-// middleware
-app.use(express.static(path.join(__dirname, "/client/build")));
+// Accessing the path module
+const path = require("path");
 
-// When app gets any requests its going to redirect those to our client
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+// middleware will import the client build folder to the server.
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+// will ensure that the routes defined with React Router are working once the application has been deployed. It handles any requests by
+// redirecting them to index.html
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 app.listen(process.env.PORT || 4000, () => {
