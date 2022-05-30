@@ -8,7 +8,7 @@ const config = require("./src/config/index");
 const DB_connect = require("./src/config/database.connection");
 
 const app = express();
-const PORT = config.SOCKET_PORT || 4020;
+// const PORT = config.SOCKET_PORT || 4020;
 
 app.use(express.json());
 app.use(cors());
