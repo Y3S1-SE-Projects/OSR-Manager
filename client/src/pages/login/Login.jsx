@@ -73,7 +73,7 @@ export default function Login() {
           className="loginButton"
           type="submit"
           disabled={isFetching || !username || !password}
-          onClick={handleClick}
+          onClick={handleSubmit}
         >
           {loading ? "please wait" : "Login"}
         </button>
