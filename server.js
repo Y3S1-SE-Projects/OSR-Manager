@@ -34,11 +34,11 @@ app.use("/categories", require("./src/api/routes/Categories.route"));
 const path = require("path");
 
 // middleware will import the client build folder to the server.
-app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 // will ensure that the routes defined with React Router are working once the application has been deployed. It handles any requests by redirecting them to index.html
 app.get("*", function (request, response) {
-  response.sendFile(path.join(__dirname, "./client/build", "index.html"));
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 app.listen(process.env.PORT || 4000, () => {
