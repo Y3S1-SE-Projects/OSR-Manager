@@ -1,7 +1,7 @@
 const express = require("express");
-const cors= require("cors");
+const cors = require("cors");
 const bodyParser = require("body-parser");
-require('dotenv').config();
+require("dotenv").config();
 
 const logger = require("./utils/logger");
 const config = require("./config/index");
@@ -14,31 +14,22 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.listen(PORT, ()=>{
-    logger.info(`Server is up and running on port number: ${PORT}`)
-    DB_connect().then(() => {
-        logger.warn("MongoDB Connecting...")
-    });
-})
-
+app.listen(process.env.PORT || 4000, () => {
+  logger.info(`Server is up and running on port number: ${PORT}`);
+  DB_connect().then(() => {
+    logger.warn("MongoDB Connecting...");
+  });
+});
 
 //feature/chandur
 
-
-
 //feature/abineshh
-app.use("/student",require("./api/routes/Student.route"))
+app.use("/student", require("./api/routes/Student.route"));
 app.use("/auth", require("./api/routes/Authentication.route"));
 app.use("/users", require("./api/routes/User.route"));
 app.use("/posts", require("./api/routes/Post.route"));
 app.use("/categories", require("./api/routes/Categories.route"));
 
-
 //feature/zihara
 
-
-
-
 //feature/sachini
-
-

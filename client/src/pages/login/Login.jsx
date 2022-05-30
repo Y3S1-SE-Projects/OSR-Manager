@@ -9,11 +9,6 @@ export default function Login() {
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
 
-  // For Testing
-  const [error, setError] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
@@ -28,9 +23,32 @@ export default function Login() {
     }
   };
 
+  // For Testing
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({});
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // fetching external fake api user
+      const { data } = await axios.get(
+        "https://jsonplaceholder.typicode.com/users/1"
+      );
+      setUser(data);
+    } catch {
+      setError(true);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="login">
       <span className="loginTitle">Login</span>
+      <span className="user">{user.name}</span>
       <form className="loginForm" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
@@ -54,8 +72,9 @@ export default function Login() {
           className="loginButton"
           type="submit"
           disabled={isFetching || !username || !password}
+          onClick={handleClick}
         >
-          Login
+          {loading ? "please wait" : "Login"}
         </button>
         <span
           data-testid="error"
