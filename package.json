@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --runInBand --forceExit",
-    "start": "node src/server.js",
+    "start": "node server.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "author": "",

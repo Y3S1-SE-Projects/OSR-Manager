@@ -3,9 +3,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
-const logger = require("./utils/logger");
-const config = require("./config/index");
-const DB_connect = require("./config/database.connection");
+const logger = require("./src/utils/logger");
+const config = require("./src/config/index");
+const DB_connect = require("./src/config/database.connection");
 
 const app = express();
 const PORT = config.SOCKET_PORT || 4020;
@@ -22,11 +22,11 @@ app.listen(process.env.PORT || 4000, () => {
 });
 
 //routes
-app.use("/student", require("./api/routes/Student.route"));
-app.use("/auth", require("./api/routes/Authentication.route"));
-app.use("/users", require("./api/routes/User.route"));
-app.use("/posts", require("./api/routes/Post.route"));
-app.use("/categories", require("./api/routes/Categories.route"));
+app.use("/student", require("./src/api/routes/Student.route"));
+app.use("/auth", require("./src/api/routes/Authentication.route"));
+app.use("/users", require("./src/api/routes/User.route"));
+app.use("/posts", require("./src/api/routes/Post.route"));
+app.use("/categories", require("./src/api/routes/Categories.route"));
 
 // middleware
 app.use(express.static(path.join(__dirname, "/client/build")));
