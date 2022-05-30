@@ -33,9 +33,13 @@ app.get("*", function (request, response) {
   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
-app.listen(process.env.PORT || 4000, () => {
-  logger.info(`Server is up and running on port number: ${PORT}`);
-  DB_connect().then(() => {
-    logger.warn("MongoDB Connecting...");
-  });
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
+// app.listen(process.env.PORT || 4000, () => {
+//   logger.info(`Server is up and running on port number: ${PORT}`);
+//   DB_connect().then(() => {
+//     logger.warn("MongoDB Connecting...");
+//   });
+// });
