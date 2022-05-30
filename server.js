@@ -34,7 +34,7 @@ app.use("/categories", require("./src/api/routes/Categories.route"));
 const path = require("path");
 
 // middleware will import the client build folder to the server.
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.resolve(__dirname, "client", "build")));
 
 // will ensure that the routes defined with React Router are working once the application has been deployed. It handles any requests by redirecting them to index.html
 app.get("*", (req, res) => {
@@ -42,7 +42,7 @@ app.get("*", (req, res) => {
 });
 
 app.listen(process.env.PORT || 4000, () => {
-  console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${process.env.PORT}`);
 });
 
 // app.listen(process.env.PORT || 4000, () => {
