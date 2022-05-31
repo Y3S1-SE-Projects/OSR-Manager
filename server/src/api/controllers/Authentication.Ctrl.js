@@ -1,6 +1,7 @@
 const User = require("../models/User.model");
 const logger = require("../../utils/logger");
 const bcrypt = require("bcrypt");
+const Email = require("../../utils/email")
 
 //Register a user
 const registerUser = async (req, res) => {
@@ -14,8 +15,15 @@ const registerUser = async (req, res) => {
             password: hashedPass,
         });
 
+        const mailOption={
+            to:req.body.email,
+            subject:"Regarding registering to research management system",
+            text:"Successfully registered to the system"
+        }
+
         User.create(newUser).then((user)=>{
             res.status(200).json(user);
+            Email.sendEmailNotification(mailOption);
             logger.info(`--> ${req.method} Response`);
         });
 
