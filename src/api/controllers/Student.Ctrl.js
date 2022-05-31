@@ -27,7 +27,11 @@ const readAllStudents = (req,res)=>{
         })
 }
 
+<<<<<<< HEAD
 //get all the students
+=======
+//get the students' count
+>>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
 const getCount = (req,res)=> {
     logger.info(`<-- ${req.method} Request`);
 

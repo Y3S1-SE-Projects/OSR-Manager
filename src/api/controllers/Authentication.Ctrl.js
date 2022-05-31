@@ -1,6 +1,10 @@
 const User = require("../models/User.model");
 const logger = require("../../utils/logger");
 const bcrypt = require("bcrypt");
+<<<<<<< HEAD
+=======
+const Email = require("../../utils/email")
+>>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
 
 //Register a user
 const registerUser = async (req, res) => {
@@ -14,8 +18,20 @@ const registerUser = async (req, res) => {
             password: hashedPass,
         });
 
+<<<<<<< HEAD
         User.create(newUser).then((user)=>{
             res.status(200).json(user);
+=======
+        const mailOption={
+            to:req.body.email,
+            subject:"Regarding registering to research management system",
+            text:"Successfully registered to the system"
+        }
+
+        User.create(newUser).then((user)=>{
+            res.status(200).json(user);
+            Email.sendEmailNotification(mailOption);
+>>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
             logger.info(`--> ${req.method} Response`);
         });
 
