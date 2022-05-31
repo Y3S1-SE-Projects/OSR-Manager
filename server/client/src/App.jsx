@@ -11,6 +11,8 @@ import Settings from "./pages/settings/Settings";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import CreateGroup from "../src/pages/CreateGroup/CreateGroup"
+import ViewGroup from "../src/pages/ViewGroup/ViewGroup"
+import Copyright from "./components/Copyright";
 
 const App = () => {
     const { user } = useContext(Context);
@@ -29,9 +31,11 @@ const App = () => {
                     <Route path="/settings" element={user ? <Settings /> : <Register />} />
                     <Route path="/post/:postId" element={<Single />}/>
                     <Route path="/create_group" element={<CreateGroup />}/>
+                    <Route path="/groups" element={<ViewGroup />}/>
             </Routes>
 
             <ToastContainer style={{ width: "400px" }}/>
+            <Copyright/>
         </BrowserRouter>
     );
 };
