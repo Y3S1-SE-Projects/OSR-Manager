@@ -32,6 +32,7 @@ app.use("/auth", require("./api/routes/Authentication.route"));
 app.use("/users", require("./api/routes/User.route"));
 app.use("/posts", require("./api/routes/Post.route"));
 app.use("/categories", require("./api/routes/Categories.route"));
+app.use("/group", require("./api/routes/Group.route"));
 
 
 //feature/zihara
