@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
+import { axiosInstance } from "../../config";
+=======
+>>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
 import "./register.css";
 import Notification from "../../utils/Notification"
 
@@ -14,7 +18,11 @@ export default function Register() {
     e.preventDefault();
     setError(false);
     try {
+<<<<<<< HEAD
+      const res = await axiosInstance.post("/auth/register", {
+=======
       const res = await axios.post("/auth/register", {
+>>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
         username,
         email,
         password,
@@ -58,7 +66,15 @@ export default function Register() {
           Login
         </Link>
       </button>
+<<<<<<< HEAD
+      {error && (
+        <span style={{ color: "red", marginTop: "10px" }}>
+          Something went wrong!
+        </span>
+      )}
+=======
       {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
+>>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
     </div>
   );
 }
