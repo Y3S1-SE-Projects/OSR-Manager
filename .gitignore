@@ -1,8 +1,4 @@
 /node_modules
 package-lock.json
-<<<<<<< HEAD
 yarn.lock.json
-../.idea
-=======
 .idea
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
