@@ -13,14 +13,6 @@ export default function TopBar() {
   return (
     <div className="top">
       <div className="topLeft">
-<<<<<<< HEAD
-        <i className="topIcon fab fa-facebook-square"></i>
-        <i className="topIcon fab fa-twitter-square"></i>
-        <i className="topIcon fab fa-pinterest-square"></i>
-        <i className="topIcon fab fa-instagram-square"></i>
-=======
-
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
       </div>
       <div className="topCenter">
         <ul className="topList">
@@ -44,14 +36,11 @@ export default function TopBar() {
               WRITE
             </Link>
           </li>
-<<<<<<< HEAD
-=======
           <li className="topListItem">
             <Link className="link" to="/create_group">
               GROUPS
             </Link>
           </li>
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
           <li className="topListItem" onClick={handleLogout}>
             {user && "LOGOUT"}
           </li>
