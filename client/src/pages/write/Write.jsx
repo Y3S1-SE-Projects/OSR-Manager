@@ -1,10 +1,7 @@
 import { useContext, useState } from "react";
 import "./write.css";
-<<<<<<< HEAD
 import { axiosInstance } from "../../config";
-=======
 import axios from "axios";
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
 import { Context } from "../../context/Context";
 
 export default function Write() {
@@ -20,32 +17,34 @@ export default function Write() {
       title,
       desc,
     };
+    const data = new FormData();
     if (file) {
-<<<<<<< HEAD
-      const data = new FormData();
-=======
-      const data =new FormData();
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
+
+
+
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
       newPost.photo = filename;
       try {
-<<<<<<< HEAD
+
         await axiosInstance.post("/upload", data);
-      } catch (err) {}
+      } catch (err) {
+      }
     }
-    try {
-      const res = await axiosInstance.post("/posts", newPost);
-=======
+      try {
+        const res = await axiosInstance.post("/posts", newPost);
+
         await axios.post("/upload", data);
-      } catch (err) {}
-    }
-    try {
-      const res = await axios.post("/posts", newPost);
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
-      window.location.replace("/post/" + res.data._id);
-    } catch (err) {}
+      } catch (err) {
+      }
+
+      try {
+        const res = await axios.post("/posts", newPost);
+
+        window.location.replace("/post/" + res.data._id);
+      } catch (err) {
+      }
   };
   return (
     <div className="write">
@@ -68,11 +67,11 @@ export default function Write() {
             placeholder="Title"
             className="writeInput"
             autoFocus={true}
-<<<<<<< HEAD
+
             onChange={(e) => setTitle(e.target.value)}
-=======
+
             onChange={e=>setTitle(e.target.value)}
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
+
           />
         </div>
         <div className="writeFormGroup">
@@ -80,12 +79,8 @@ export default function Write() {
             placeholder="Tell your story..."
             type="text"
             className="writeInput writeText"
-<<<<<<< HEAD
             onChange={(e) => setDesc(e.target.value)}
-=======
-            onChange={e=>setDesc(e.target.value)}
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
-          ></textarea>
+          />
         </div>
         <button className="writeSubmit" type="submit">
           Publish

@@ -60,9 +60,16 @@ const theme = createTheme();
 export default function Orders() {
     return (
 
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Grid item xs={12}>
+        <ThemeProvider theme={theme} >
+
+            <Grid item
+                  xs={12}
+                  sx={{
+                      backgroundImage: `url(https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+            }}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
 
             <h2>Recent Orders</h2>
