@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const logger = require("./utils/logger");
 const config = require("./config/index");
-const DB_connect = require("./config/database.connection");
+const DB_connect = require("./utils/database.connection");
 
 const app = express();
 const PORT = config.SOCKET_PORT || 4020;
