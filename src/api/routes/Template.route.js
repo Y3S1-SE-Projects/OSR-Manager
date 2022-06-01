@@ -2,7 +2,7 @@ const router = require("express").Router();
 const TemplateCtrl = require("../controllers/Template.Ctrl");
 
 //save template data
-router.post( "/",TemplateCtrl.createTemplate);
+router.post( "/",TemplateCtrl.createTemplate)
 
 //update template data
 router.put("/:id",TemplateCtrl.updateTemplate);
