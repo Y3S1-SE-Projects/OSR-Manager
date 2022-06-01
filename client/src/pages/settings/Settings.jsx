@@ -2,11 +2,11 @@ import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
-<<<<<<< HEAD
+
 import { axiosInstance } from "axios";
-=======
+
 import axios from "axios";
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
+
 
 export default function Settings() {
   const [file, setFile] = useState(null);
@@ -16,11 +16,8 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-<<<<<<< HEAD
+
   const PF = "http://localhost:5000/images/";
-=======
-  const PF = "http://localhost:5000/images/"
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,25 +35,25 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-<<<<<<< HEAD
+
         await axiosInstance.post("/upload", data);
       } catch (err) {}
     }
-    try {
-      const res = await axiosInstance.put("/users/" + user._id, updatedUser);
-=======
-        await axios.post("/upload", data);
-      } catch (err) {}
+    // try {
+    //   const res = await axiosInstance.put("/users/" + user._id, updatedUser);
+    //
+    //     await axios.post("/upload", data);
+    //   } catch (err) {}
+      try {
+          const res = await axios.put("/users/" + user._id, updatedUser);
+
+          setSuccess(true);
+          dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+      } catch (err) {
+          dispatch({ type: "UPDATE_FAILURE" });
+      }
     }
-    try {
-      const res = await axios.put("/users/" + user._id, updatedUser);
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
-      setSuccess(true);
-      dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
-    } catch (err) {
-      dispatch({ type: "UPDATE_FAILURE" });
-    }
-  };
+
   return (
     <div className="settings">
       <div className="settingsWrapper">
@@ -68,11 +65,7 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-<<<<<<< HEAD
               src={file ? URL.createObjectURL(file) : PF + user.profilePic}
-=======
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
->>>>>>> 6f8764d5726ce256f035584c2b23aa38ae8a4535
               alt=""
             />
             <label htmlFor="fileInput">
