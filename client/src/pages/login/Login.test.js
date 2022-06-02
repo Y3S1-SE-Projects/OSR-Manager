@@ -1,5 +1,4 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import Login from "./Login";
 
 // Mocking data so that testing is not affected if backend servers goes down

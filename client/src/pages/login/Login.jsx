@@ -1,4 +1,5 @@
 import axios from "axios";
+import React from "react";
 import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
@@ -22,7 +23,6 @@ export default function Login() {
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
-
 
   // For Testing
   const [error, setError] = useState(false);
@@ -55,20 +55,16 @@ export default function Login() {
         <input
           type="text"
           className="loginInput"
-
           // placeholder="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-
           placeholder="Enter your username..."
-
           ref={userRef}
         />
         <label>Password</label>
         <input
           type="password"
           className="loginInput"
-
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

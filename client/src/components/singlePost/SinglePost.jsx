@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
@@ -41,7 +42,7 @@ export default function SinglePost() {
         title,
         desc,
       });
-      setUpdateMode(false)
+      setUpdateMode(false);
     } catch (err) {}
   };
 

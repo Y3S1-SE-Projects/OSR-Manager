@@ -1,8 +1,9 @@
+import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
-import Notification from "../../utils/Notification"
+import Notification from "../../utils/Notification";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -14,16 +15,16 @@ export default function Register() {
     e.preventDefault();
     setError(false);
     try {
-
       // const res = await axiosInstance.post("/auth/register", {
 
       const res = await axios.post("/auth/register", {
-
         username,
         email,
         password,
       });
-      res.data && window.location.replace("/login") && Notification('success','User registered');
+      res.data &&
+        window.location.replace("/login") &&
+        Notification("success", "User registered");
     } catch (err) {
       setError(true);
     }
@@ -69,8 +70,11 @@ export default function Register() {
         </span>
       )}
 
-      {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
-
+      {error && (
+        <span style={{ color: "red", marginTop: "10px" }}>
+          Something went wrong!
+        </span>
+      )}
     </div>
   );
 }

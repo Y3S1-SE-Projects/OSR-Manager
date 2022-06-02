@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useState } from "react";
 import "./write.css";
 import { axiosInstance } from "../../config";
@@ -19,32 +20,25 @@ export default function Write() {
     };
     const data = new FormData();
     if (file) {
-
-
-
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
       newPost.photo = filename;
       try {
-
         await axiosInstance.post("/upload", data);
-      } catch (err) {
-      }
+      } catch (err) {}
     }
-      try {
-        const res = await axiosInstance.post("/posts", newPost);
+    try {
+      const res = await axiosInstance.post("/posts", newPost);
 
-        await axios.post("/upload", data);
-      } catch (err) {
-      }
+      await axios.post("/upload", data);
+    } catch (err) {}
 
-      try {
-        const res = await axios.post("/posts", newPost);
+    try {
+      const res = await axios.post("/posts", newPost);
 
-        window.location.replace("/post/" + res.data._id);
-      } catch (err) {
-      }
+      window.location.replace("/post/" + res.data._id);
+    } catch (err) {}
   };
   return (
     <div className="write">
@@ -67,11 +61,7 @@ export default function Write() {
             placeholder="Title"
             className="writeInput"
             autoFocus={true}
-
             onChange={(e) => setTitle(e.target.value)}
-
-            onChange={e=>setTitle(e.target.value)}
-
           />
         </div>
         <div className="writeFormGroup">
