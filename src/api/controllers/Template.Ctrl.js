@@ -4,7 +4,7 @@ const logger = require("../../utils/logger");
 //create template
 const createTemplate = (req,res)=>{
 
-    logger.info(`<-- ${req.method} Request`)
+    logger.info(`<-- ${req.method} Request`);
     const template = new Template(req.body);
 
     Template.create(template).then(() => {
