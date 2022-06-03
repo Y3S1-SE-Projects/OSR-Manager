@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./singlePost.css";
+import {SERVER_URL} from "../../utils/config";
 
 export default function SinglePost() {
   const location = useLocation();
@@ -18,7 +19,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
+      const res = await axios.get(`${SERVER_URL}/posts/` + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -28,7 +29,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axios.delete(`${SERVER_URL}/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace("/");
@@ -37,7 +38,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`${SERVER_URL}/posts/${post._id}`, {
         username: user.username,
         title,
         desc,
@@ -65,14 +66,8 @@ export default function SinglePost() {
             {title}
             {post.username === user?.username && (
               <div className="singlePostEdit">
-                <i
-                  className="singlePostIcon far fa-edit"
-                  onClick={() => setUpdateMode(true)}
-                ></i>
-                <i
-                  className="singlePostIcon far fa-trash-alt"
-                  onClick={handleDelete}
-                ></i>
+                <i className="singlePostIcon far fa-edit" onClick={() => setUpdateMode(true)}/>
+                <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}/>
               </div>
             )}
           </h1>
