@@ -25,11 +25,14 @@ const registerUser = async (req, res) => {
             res.status(200).json(user);
             Email.sendEmailNotification(mailOption);
             logger.info(`--> ${req.method} Response`);
+        }).catch((err)=>{
+            logger.error(`${err.message}`)
+            return res.status(500).json(err.message);
         });
 
-    } catch (err) {
+    }catch (err) {
         logger.error(`${err.message}`)
-        res.status(500).json(err);
+        return res.status(500).json(err.message);
     }
 }
 
