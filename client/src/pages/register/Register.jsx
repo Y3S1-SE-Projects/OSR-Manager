@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
 import Notification from "../../utils/Notification"
+import React from "react";
 import {SERVER_URL} from "../../utils/config";
 
 export default function Register() {

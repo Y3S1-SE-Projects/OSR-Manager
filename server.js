@@ -47,6 +47,7 @@ app.use("/group", require("./src/api/routes/Group.route"));
 
 //feature/zihara
 app.use("/template",require("./src/api/routes/Template.route"));
+app.use("/fileupload",require("./src/api/routes/FileUpload.route"));
 
 
 
