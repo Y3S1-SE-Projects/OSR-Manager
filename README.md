@@ -18,6 +18,15 @@ Do these steps in the directory of both client and server folders
 
 ### Starting application
 
+ROOT DIRECTORY (SERVER)
+- npm i
+- npm start 
+  OR
+- yarn
+- yarn start 
+
+CLIENT DIRECTORY (SERVER)
+- cd client
 - npm i
 - npm start 
   OR
@@ -31,11 +40,7 @@ Do these steps in the directory of both client and server folders
 - npm run test
 
 ```
-### Sample MongoDB data
 
-```
-< Sample MongoDB data >
-```
 
 
 ## System Overview :package:
