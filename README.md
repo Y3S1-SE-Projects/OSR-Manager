@@ -1,4 +1,4 @@
-# Realtime Chat Application
+# OSR Manager Realtime Chat Application
 
 ### [Live Site](https://the-great-chabbax-site.netlify.app)
 
