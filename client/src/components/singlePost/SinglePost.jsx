@@ -5,13 +5,13 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./singlePost.css";
-import {SERVER_URL} from "../../utils/config";
+import { SERVER_URL } from "../../utils/config";
 
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://osr-manager-server.herokuapp.com/images/";
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -19,7 +19,9 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(`${SERVER_URL}/posts/` + path);
+      const res = await axios.get(
+        "https://osr-manager-server.herokuapp.com/posts/" + path
+      );
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -29,20 +31,26 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${SERVER_URL}/posts/${post._id}`, {
-        data: { username: user.username },
-      });
+      await axios.delete(
+        "https://osr-manager-server.herokuapp.com/posts/${post._id}",
+        {
+          data: { username: user.username },
+        }
+      );
       window.location.replace("/");
     } catch (err) {}
   };
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${SERVER_URL}/posts/${post._id}`, {
-        username: user.username,
-        title,
-        desc,
-      });
+      await axios.put(
+        "https://osr-manager-server.herokuapp.com/posts/${post._id}",
+        {
+          username: user.username,
+          title,
+          desc,
+        }
+      );
       setUpdateMode(false);
     } catch (err) {}
   };
@@ -66,8 +74,14 @@ export default function SinglePost() {
             {title}
             {post.username === user?.username && (
               <div className="singlePostEdit">
-                <i className="singlePostIcon far fa-edit" onClick={() => setUpdateMode(true)}/>
-                <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}/>
+                <i
+                  className="singlePostIcon far fa-edit"
+                  onClick={() => setUpdateMode(true)}
+                />
+                <i
+                  className="singlePostIcon far fa-trash-alt"
+                  onClick={handleDelete}
+                />
               </div>
             )}
           </h1>

@@ -13,6 +13,7 @@ import Register from "./pages/register/Register";
 import CreateGroup from "../src/pages/CreateGroup/CreateGroup"
 import ViewGroup from "../src/pages/ViewGroup/ViewGroup"
 import Copyright from "./components/Copyright";
+import TemplateUpload from "./pages/templateUpload/templateUpload";
 
 const App = () => {
     const { user } = useContext(Context);
@@ -32,6 +33,7 @@ const App = () => {
                     <Route path="/post/:postId" element={<Single />}/>
                     <Route path="/create_group" element={<CreateGroup />}/>
                     <Route path="/groups" element={<ViewGroup />}/>
+                    <Route path="/template-upload" element={<TemplateUpload />}/>
             </Routes>
 
             <ToastContainer style={{ width: "400px" }}/>

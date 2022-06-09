@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
 import "./write.css";
-import { axiosInstance } from "../../config";
 import axios from "axios";
 import { Context } from "../../context/Context";
 
@@ -25,11 +24,17 @@ export default function Write() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axiosInstance.post("/upload", data);
+        await axios.post(
+          "https://osr-manager-server.herokuapp.com/upload",
+          data
+        );
       } catch (err) {}
     }
     try {
-      const res = await axiosInstance.post("/posts", newPost);
+      const res = await axios.post(
+        "https://osr-manager-server.herokuapp.com/posts",
+        newPost
+      );
 
       await axios.post("/upload", data);
     } catch (err) {}
@@ -58,7 +63,7 @@ export default function Write() {
           />
           <input
             type="text"
-            placeholder="Title"
+            placeholder="Research Title"
             className="writeInput"
             autoFocus={true}
             onChange={(e) => setTitle(e.target.value)}
@@ -66,7 +71,7 @@ export default function Write() {
         </div>
         <div className="writeFormGroup">
           <textarea
-            placeholder="Tell your story..."
+            placeholder="Type your abstract"
             type="text"
             className="writeInput writeText"
             onChange={(e) => setDesc(e.target.value)}

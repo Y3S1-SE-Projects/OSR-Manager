@@ -2,33 +2,37 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
-import Notification from "../../utils/Notification"
-import {SERVER_URL} from "../../utils/config";
+import Notification from "../../utils/Notification";
+import React from "react";
+import { SERVER_URL } from "../../utils/config";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [roles, setRoles] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
     try {
-
-      // const res = await axiosInstance.post("/auth/register", {
-
-      const res = await axios.post(`${SERVER_URL}/auth/register`, {
-
-        username,
-        email,
-        password,
-      });
-      res.data && window.location.replace("/login") && Notification('success','User registered');
+      const res = await axios.post(
+        "https://osr-manager-server.herokuapp.com/auth/register",
+        {
+          username,
+          email,
+          password,
+          roles,
+        }
+      );
+      res.data &&
+        window.location.replace("/login") &&
+        Notification("success", "User registered");
     } catch (err) {
       setError(true);
       console.log(err);
-      Notification('error',`${err.response.data}`)
+      Notification("error", `${err.response.data}`);
     }
   };
   return (
@@ -56,6 +60,19 @@ export default function Register() {
           placeholder="Enter your password..."
           onChange={(e) => setPassword(e.target.value)}
         />
+        <label>Roles</label>
+        <select
+          aria-label="Default select example"
+          type="roles"
+          className="registerInput"
+          name="roles"
+          onChange={(e) => setRoles(e.target.value)}
+        >
+          <option value="user">Student</option>
+          <option value="panel">Panel</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="admin">Admin</option>
+        </select>
         <button className="registerButton" type="submit">
           Register
         </button>
@@ -66,8 +83,11 @@ export default function Register() {
         </Link>
       </button>
 
-      {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
-
+      {error && (
+        <span style={{ color: "red", marginTop: "10px" }}>
+          Something went wrong!
+        </span>
+      )}
     </div>
   );
 }

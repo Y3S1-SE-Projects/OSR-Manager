@@ -3,9 +3,6 @@ import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
-
-import { axiosInstance } from "axios";
-
 import axios from "axios";
 
 export default function Settings() {
@@ -17,7 +14,7 @@ export default function Settings() {
 
   const { user, dispatch } = useContext(Context);
 
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://osr-manager-server.herokuapp.com/images/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +32,10 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-        await axiosInstance.post("/upload", data);
+        await axios.post(
+          "https://osr-manager-server.herokuapp.com/upload",
+          data
+        );
       } catch (err) {}
     }
     // try {

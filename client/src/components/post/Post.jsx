@@ -3,7 +3,7 @@ import "./post.css";
 import { Link } from "react-router-dom";
 
 export default function Post({ post }) {
-  const PF = "http://localhost:4000/images/";
+  const PF = "https://osr-manager-server.herokuapp.com/images/";
   return (
     <div className="post">
       {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}

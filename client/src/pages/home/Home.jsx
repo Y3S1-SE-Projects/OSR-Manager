@@ -15,7 +15,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get(`${SERVER_URL}/posts` + search);
+      const res = await axios.get(
+        "https://osr-manager-server.herokuapp.com/posts" + search
+      );
       setPosts(res.data);
     };
     fetchPosts();

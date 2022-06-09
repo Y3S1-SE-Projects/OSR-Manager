@@ -6,7 +6,7 @@ import "./topbar.css";
 
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://osr-manager-server.herokuapp.com/images/";
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -39,6 +39,16 @@ export default function TopBar() {
           <li className="topListItem">
             <Link className="link" to="/create_group">
               GROUPS
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/create_group">
+              CHAT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/create_group">
+              DRIVE
             </Link>
           </li>
           <li className="topListItem" onClick={handleLogout}>
