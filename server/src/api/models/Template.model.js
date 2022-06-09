@@ -9,6 +9,10 @@ const TemplateSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    desc: {
+        type: String,
+        required: true
+    },
     updated_date: {
         type: Date,
         default: Date.now

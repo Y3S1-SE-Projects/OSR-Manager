@@ -44,14 +44,20 @@ export default function TopBar() {
             </Link>
           </li>
           <li className="topListItem">
-            <Link className="link" to="/create_group">
-              CHAT
+            <Link className="link" to="/templates">
+              TEMPLATE
             </Link>
           </li>
           <li className="topListItem">
-            <Link className="link" to="/create_group">
-              DRIVE
+            <Link className="link" to="/schemes">
+              MARKING
             </Link>
+          </li>
+          <li className="topListItem">
+            <a className="link" href="https://the-great-chabbax-site.netlify.app">CHAT</a>
+          </li>
+          <li className="topListItem">
+            <a className="link" href="https://luxury-cajeta-4352cf.netlify.app">DRIVE</a>
           </li>
           <li className="topListItem" onClick={handleLogout}>
             {user && "LOGOUT"}

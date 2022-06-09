@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "PRODUCTION") {
 }
 
 // Server Port
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   logger.info(`Server is up and running on port number: ${PORT}`);
   DB_connect().then(() => {
     logger.warn("MongoDB Connecting...");
@@ -45,5 +45,6 @@ app.use("/group", require("./src/api/routes/Group.route"));
 //feature/zihara
 app.use("/template", require("./src/api/routes/Template.route"));
 app.use("/fileupload", require("./src/api/routes/FileUpload.route"));
+app.use("/marking", require("./src/api/routes/Marking.route"));
 
 //feature/sachini

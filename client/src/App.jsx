@@ -14,6 +14,9 @@ import CreateGroup from "../src/pages/CreateGroup/CreateGroup"
 import ViewGroup from "../src/pages/ViewGroup/ViewGroup"
 import Copyright from "./components/Copyright";
 import TemplateUpload from "./pages/templateUpload/templateUpload";
+import TemplateView from "./pages/templateView/templateView";
+import MarkingView from "./pages/MarkingView/MarkingView";
+import MarkingUpload from "./pages/MarkingUpload/MarkingUpload";
 
 const App = () => {
     const { user } = useContext(Context);
@@ -34,10 +37,12 @@ const App = () => {
                     <Route path="/create_group" element={<CreateGroup />}/>
                     <Route path="/groups" element={<ViewGroup />}/>
                     <Route path="/template-upload" element={<TemplateUpload />}/>
+                    <Route path="/marking-upload" element={<MarkingUpload />}/>
+                    <Route path="/templates" element={<TemplateView />}/>
+                    <Route path="/schemes" element={<MarkingView />}/>
             </Routes>
 
             <ToastContainer style={{ width: "400px" }}/>
-            <Copyright/>
         </BrowserRouter>
     );
 };

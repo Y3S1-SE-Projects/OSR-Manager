@@ -1,208 +1,176 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
-import { SERVER_URL } from "../../utils/config";
+import {SERVER_URL} from "../../utils/config";
+import Dropzone from 'react-dropzone';
+import "./style.css";
+import {ProgressBar} from "react-bootstrap"
+import Notification from "../../utils/Notification";
+
 
 function TemplateUpload() {
-  const initialState = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-    phone: "",
-    password: "",
-    password2: "",
-    gender: "",
-    err: "",
-    success: "",
-  };
 
-  //const { student, isLogged } = auth;
-  const [data, setData] = useState(initialState);
-  const [template, setTemplate] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [callback, setCallback] = useState(false);
+    const [file, setFile] = useState(null); // state for storing actual image
+    const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value, err: "", success: "" });
-  };
+    const [progress, setProgress] = useState();
+    const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+    const dropRef = useRef();
 
-  const changeTemplate = async (e) => {
-    e.preventDefault();
-    try {
-      const file = e.target.files[0];
-      if (!file)
-        return setData({ ...data, err: "No files were uploaded", success: "" });
-
-      // if (file.size > 1024 * 1024) {
-      //     return setData({ ...data, err: "Size too large", success: "" });
-      // } // 1mb
-
-      // if (file.type !== "image/jpeg" && file.type !== "image/png") {
-      //     return setData({
-      //         ...data,
-      //         err: "File format not supported",
-      //         success: "",
-      //     });
-      // } // 1mb
-
-      let formData = new FormData();
-      formData.append("file", file);
-      console.log(file);
-      setLoading(true);
-
-      const res = await axios.post(
-        "https://osr-manager-server.herokuapp.com/fileupload/template",
-        formData,
-        {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
+    const updateBorder = (dragState) => {
+        if (dragState === 'over') {
+            dropRef.current.style.border = '2px solid #1c87c9';
+        } else if (dragState === 'leave') {
+            dropRef.current.style.border = '2px dashed #1c87c9';
         }
-      );
+    };
 
-      setLoading(false);
-      setTemplate(res.data.url);
-      //console.log(template)
-      const temp = await axios.post(
-        "https://osr-manager-server.herokuapp.com/template",
-        {
-          file_name: file.name,
-          file_link: res.data.url,
+    //const [data, setData] = useState(initialState);
+   const [description, setDescription] = useState('');
+    const [template, setTemplate] = useState(false)
+    const [loading, setLoading] = useState(false);
+    //const [callback, setCallback] = useState(false);
+
+    const onDrop = (files) => {
+        const [uploadedFile] = files;
+        setFile(uploadedFile);
+        setTemplate(uploadedFile);
+        changeTemplate(uploadedFile);
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            setPreviewSrc(fileReader.result);
+        };
+        fileReader.readAsDataURL(uploadedFile);
+        setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
+
+    };
+
+    const changeTemplate =  (e) => {
+        e.preventDefault();
+            const file = e.target.files[0];
+            if (!file)
+                return {err: "Please upload a file", success: ""};
+
+            setTemplate(file);
+        setFile(file);
+            onDrop(file);
+    };
+    const handleOnSubmit = async (event) => {
+        event.preventDefault();
+        try {
+
+            // if (!file)
+            //     return setData({ ...data, err: "No files uploaded", success: "" });
+            //
+            // if (file.size > 1024 * 1024) {
+            //     return setData({ ...data, err: "Size too large", success: "" });
+            // } // 1mb
+            //
+            // if (file.type !== "image/jpeg" && file.type !== "image/png") {
+            //     return setData({
+            //         ...data,
+            //         err: "File format not supported",
+            //         success: "",
+            //     });
+            // }
+            let formData = new FormData();
+            formData.append("file", file);
+            console.log(file);
+
+                setLoading(true);
+
+                const res = await axios.post(`${SERVER_URL}/fileupload/template`, formData, {
+                    headers: {
+                        "content-type": "multipart/form-data"
+                    },
+                    onUploadProgress: data => {
+                        //Set the progress value to show the progress bar
+
+                        setProgress(Math.round((100 * data.loaded) / data.total))
+                    },
+                });
+
+                setLoading(false);
+                setTemplate(res.data.url);
+                //console.log(template)
+                const temp = await axios.post(`${SERVER_URL}/template`, {
+                    "file_name": file.name,
+                    "file_link": res.data.url,
+                    "desc": description
+                })
+                console.log(temp)
+                Notification("success", "Template is uploaded successfully", 6000);
+               // window.location="/template";
+
+        } catch (err) {
+            Notification("error",`${err.response.data.msg}`,6000);
+            //setData({...data, err: err.response.data.msg, success: ""});
         }
-      );
-      console.log(temp);
-    } catch (err) {
-      setData({ ...data, err: err.response.data.msg, success: "" });
-    }
-  };
+    };
+    return (
+        <div className="background">
+            <div className="container row col-md-6 col-md offset-3">
+                <div className="loginInput">
+                    <div className="col">
+                        <h2 className="h4 text-center subtitle">Template Upload</h2>
+                        <div className="studentThumbnail">
 
-  // const updateProfile = () => {
-  //     try {
-  //         axios.patch(
-  //             "/student/update",
-  //             {
-  //                 firstName: firstName ? firstName : student.firstName,
-  //                 lastName: lastName ? lastName : student.lastName,
-  //                 address: address ? address : student.address,
-  //                 phone: phone ? phone : student.phone,
-  //                 thumbnail: thumbnail ? thumbnail : student.thumbnail,
-  //             },
-  //             {
-  //                 headers: { Authorization: token },
-  //             }
-  //         );
-  //         setData({ ...data, err: "", success: "Updated Successfully" });
-  //     } catch (err) {
-  //         setData({ ...data, err: err.response.data.msg, success: "" });
-  //     }
-  // };
+                            <Dropzone
+                                onDrop={onDrop}
+                                onDragEnter={() => updateBorder('over')}
+                                onDragLeave={() => updateBorder('leave')}>
+                                {({getRootProps, getInputProps}) => (
+                                    <div {...getRootProps({className: 'drop-zone'})} ref={dropRef}>
+                                        <input {...getInputProps()} />
+                                        <p>Drag and drop a file OR click here to select a file</p>
+                                        {template && (
+                                            <div>
+                                                <strong>Selected file:</strong> {template.name}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </Dropzone>
+                            <span>
 
-  // const handleUpdate = () => {
-  //     if (firstName || lastName || address || phone || thumbnail) updateProfile();
-  //     if (password) updatePassword();
-  // };
+              <input type="file" name="file" id="file_up" onChange={changeTemplate}/>
+                        </span>
+                            <br/>
+                            <br/>
+                            <br/>
+                            {progress && <ProgressBar now={progress} label={`${progress}%`} />}
+                        </div>
+                        <div className="profile-form">
 
-  return (
-    <div>
-      {/*<div className="row">*/}
-      {/*    <div className="notification-bar">*/}
-      {/*        <span>Loading...</span>*/}
-      {/*    </div>*/}
-      {/*</div>*/}
-
-      <div className="row">
-        <div className="col" id="studentWidget">
-          <h2 className="h4 text-center subtitle">Template Upload</h2>
-          <div className="studentThumbnail">
-            <img
-              //src={template ? template : student.thumbnail}
-              alt=""
-              className="img-fluid"
-            />
-            <span>
-              <input
-                type="file"
-                name="file"
-                id="file_up"
-                onChange={changeTemplate}
-              />
-            </span>
-          </div>
-          <div className="profile-form">
-            <div className="row">
-              <div className="form-group col">
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  className="form-control form-control-sm"
-                  placeholder="First Name"
-                  //defaultValue={student.firstName}
-                  id="firstName"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group col">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  className="form-control form-control-sm"
-                  placeholder="Last Name"
-                  //defaultValue={student.lastName}
-                  id="lastName"
-                  onChange={handleChange}
-                />
-              </div>
+                            <div className="form-group col">
+                                <label htmlFor="lastName">Description</label>
+                                <input
+                                    type="text"
+                                    name="desc"
+                                    className="form-control form-control-sm"
+                                    placeholder="Description"
+                                    defaultValue={description}
+                                    required="true"
+                                    onChange={(event)=>{setDescription(event.target.value)}}
+                                />
+                            </div>
+                            <div className="row">
+                                <div className="col form-group d-grid">
+                                    <button
+                                        onClick={handleOnSubmit}
+                                        type={"submit"}
+                                        className="btn btn-success mt-3"
+                                        disabled={loading}
+                                    >
+                                        Upload File
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="row">
-              <div className="col form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control form-control-sm"
-                  placeholder="Email"
-                  // defaultValue={student.email}
-                  id="email"
-                  disabled
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col form-group">
-                <label htmlFor="address">Address</label>
-                <input
-                  type="text"
-                  name="address"
-                  className="form-control form-control-sm"
-                  placeholder="Address"
-                  //defaultValue={student.address}
-                  id="address"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="row"></div>
-            <div className="row"></div>
-            <div className="row">
-              <div className="col form-group d-grid">
-                <button
-                  //onClick={handleUpdate}
-                  className="btn btn-success mt-2"
-                  disabled={loading}
-                >
-                  Update info
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="col" id="dashboardContent"></div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default TemplateUpload;
