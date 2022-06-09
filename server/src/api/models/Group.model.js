@@ -24,11 +24,11 @@ const GroupSchema = new mongoose.Schema({
     },
     supervisor:{
         type: String,
-        default: null
+        default: "null"
     },
     co_supervisor:{
         type: String,
-        default: null
+        default: "null"
     }
 });
 
