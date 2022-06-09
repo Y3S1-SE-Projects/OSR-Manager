@@ -13,7 +13,9 @@ export default function TopBar() {
   };
   return (
     <div className="top">
-      <div className="topLeft"></div>
+      <div className="topLeft">
+
+      </div>
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem">
@@ -75,7 +77,7 @@ export default function TopBar() {
             </li>
           </ul>
         )}
-        <i className="topSearchIcon fas fa-search"></i>
+        <i className="topSearchIcon fas fa-search"/>
       </div>
     </div>
   );
