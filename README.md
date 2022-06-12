@@ -16,6 +16,7 @@ Do these steps in the directory of both client and server folders
 - Create a .env file in the root directory
 - Add the folling KEY and YOUR VALUES
 
+SERVER_URL=
 PORT=
 NODE_ENV=
 MONGODB_URL=
