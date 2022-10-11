@@ -58,17 +58,9 @@ CLIENT DIRECTORY (SERVER)
 
 ```
 
-
-
-## System Overview :package:
-
-### Class Diagram
-Below is the class diagram for this project in which it clearly displays the functions and features of each stakeholder of this project
-![classdiagram](images/classdiagram.png "classdiagram")
-
 ### Technology Stack
 Below are the types of technologies we have used in this project
-![technology](images/technology.png "technology")
+![technology](https://codingthesmartway.com/wp-content/uploads/2019/01/mern_logo.png)
 
 ## Authors :mortar_board:
 - [Dissanayake M.C.Y.D](https://github.com/Chabbax)
